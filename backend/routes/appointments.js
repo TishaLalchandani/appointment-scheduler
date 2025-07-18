@@ -24,10 +24,9 @@ router.post('/', auth, async (req, res) => {
     const existing = await Appointment.findOne({ date, time });
     if (existing) return res.status(409).json({ error: 'Time slot already booked' });
 
-    const appointment = new Appointment({ userId: req.user.id, date, time, service }); // ✅ Add service
+    const appointment = new Appointment({ userId: req.user.id, date, time, service });
     await appointment.save();
 
-    
     try {
       const user = await User.findById(req.user.id);
       const transporter = nodemailer.createTransport({
@@ -42,7 +41,7 @@ router.post('/', auth, async (req, res) => {
         from: process.env.EMAIL_USER,
         to: user.email,
         subject: 'Appointment Confirmation',
-        text: `Hi ${user.name}, your appointment for "${service}" is confirmed on ${date} at ${time}.` // ✅ Include service in email
+        text: `Hi ${user.name}, your appointment for "${service}" is confirmed on ${date} at ${time}.`
       });
     } catch (emailError) {
       console.error("Email sending failed:", emailError.message);
@@ -95,3 +94,4 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 module.exports = router;
+
