@@ -47,7 +47,7 @@ JWT_SECRET=your_jwt_secret
 ```bash
 npm install
 node server.js
-
+---
 This will start your Express server on http://localhost:3000
 - Ensure MongoDB is running locally or use MongoDB Atlas.
 
