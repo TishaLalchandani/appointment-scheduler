@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Scheduler</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background:#f7f9fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: black;
+    }
+
+    .welcome-box {
+      background: rgba(15, 204, 116, 0.1);
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      color: white;
+    }
+
+    .btn-login {
+      background-color: #007bff;
+    }
+
+    .btn-login:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-signup {
+      background-color: #28a745;
+    }
+
+    .btn-signup:hover {
+      background-color: #1e7e34;
+    }
+
+    @media screen and (max-width: 500px) {
+      h1 {
+        font-size: 26px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-box">
+    <h1>Welcome!</h1>
+    <p>Book and manage your salons appointments with ease using our scheduler.</p>
+    <a href="login.html" class="btn btn-login">Login</a>
+    <a href="signup.html" class="btn btn-signup">Sign Up</a>
+  </div>
+</body>
+</html>
