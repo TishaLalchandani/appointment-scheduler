@@ -16,7 +16,7 @@ reminders when their appointment is within the next hour. The application suppor
 
 ## 🎥 Demo Video
 
-[Click here to view the demo video on Google Drive](https://drive.google.com/file/d/12ow3lvk6LDveAOiubCjK93d59aVDUasj/view?usp=drivesdk)
+[Click here to view the demo video on Google Drive](https://drive.google.com/file/d/1Av6meujQrkzQnI8suJgq1H6s-7s-WOcx/view?usp=drive_link)
 
 
 ## 🛠️ Tech Stack
