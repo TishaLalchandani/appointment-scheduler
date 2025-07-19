@@ -54,4 +54,4 @@ This will start your Express server on http://localhost:3000
 ### 2️⃣ Frontend Setup
 
 1. Go to `frontend/` folder
-2. Open `welcome.html` in your browser
+2. Open `welcome.html`in your browser
