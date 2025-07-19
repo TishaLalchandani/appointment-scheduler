@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f1f5f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .signup-box {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .password-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .password-wrapper input {
+      padding-right: 40px;
+      /* space for the icon */
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #555;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .link a {
+      text-decoration: none;
+      color: #0066cc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="signup-box">
+    <h2>Sign Up</h2>
+
+    <form id="signup-form" onsubmit="return validateForm(event)">
+      <input type="text" id="name" placeholder="Name" required pattern="[A-Za-z ]{2,}"
+        title="Name must be at least 2 characters and contain only letters and spaces">
+
+      <input type="email" id="email" placeholder="Email" required
+       pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+       title="Enter a valid email like user@example.com">
+
+
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Password" required
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          title="Password must be at least 8 characters and include uppercase, lowercase, number, and special character">
+        <span class="toggle-password" onclick="togglePassword('password', this)">👁</span>
+      </div>
+
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="link">
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+
+  <script>
+    async function validateForm(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+
+      if (!name.checkValidity()) {
+        alert(name.title);
+        name.focus();
+        return false;
+      }
+
+      if (!email.checkValidity()) {
+        alert(email.title);
+        email.focus();
+        return false;
+      }
+
+      if (!password.checkValidity()) {
+        alert(password.title);
+        password.focus();
+        return false;
+      }
+
+      const res = await fetch('http://localhost:5000/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.value.trim(),
+          email: email.value.trim(),
+          password: password.value.trim()
+        })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert('Signup successful!');
+        window.location.href = 'login.html';
+      } else {
+        alert(data.error || 'Signup failed!');
+      }
+    }
+
+    function togglePassword(inputId, icon) {
+      const input = document.getElementById(inputId);
+      const isHidden = input.type === "password";
+      input.type = isHidden ? "text" : "password";
+      icon.textContent = isHidden ? "👁️" : "👁";
+    }
+  </script>
+</body>
+
+</html>
